@@ -12,10 +12,14 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.filechooser.*;
 
 public class NewJFrame extends javax.swing.JFrame {
      BufferedImage imagem1;
+     BufferedImage imagemComAlpha;
+     BufferedImage imagemComAlpha1;
      int flag=0;
    
     public NewJFrame() {
@@ -40,6 +44,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +93,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Transparencia");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -207,6 +220,14 @@ public class NewJFrame extends javax.swing.JFrame {
         this.imageUpdate(imagem1, ALLBITS, 0, 0, width, height);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+      
+        TranparenciaSobreImagem.aplicarTransparenciaAnimada(imagem1, jLabel1);
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    
+  
+    
     /**
      * @param args the command line arguments
      */
@@ -251,5 +272,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
