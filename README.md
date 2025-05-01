@@ -1,6 +1,6 @@
 # Lista de Atividades 1 — Processamento de Imagens
 
-Este projeto implementa operações básicas de manipulação de imagens utilizando Python e bibliotecas de processamento de imagem como OpenCV ou Pillow. As atividades foram divididas em duas partes principais: aplicação de transparência (alfa) e leitura/exportação de arquivos no formato PNM.
+Este projeto implementa operações básicas de manipulação de imagens utilizando Java e bibliotecas de processamento de imagem. As atividades foram divididas em duas partes principais: aplicação de transparência (alfa) e leitura/exportação de arquivos no formato PNM.
 
 ## 📌 Atividades Desenvolvidas
 
