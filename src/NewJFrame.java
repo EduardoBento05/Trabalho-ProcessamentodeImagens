@@ -21,6 +21,7 @@ public class NewJFrame extends javax.swing.JFrame {
      BufferedImage imagemComAlpha;
      BufferedImage imagemComAlpha1;
      int flag=0;
+     int angle_sum = 0;
    
     public NewJFrame() {
         initComponents();
@@ -35,6 +36,10 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -47,6 +52,37 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jMenuItem12.setText("jMenuItem12");
+
+        jMenuItem14.setText("jMenuItem14");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +156,48 @@ public class NewJFrame extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem8);
 
+        jMenuItem9.setText("Segmentar imagem");
+        jMenuItem9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem9MouseClicked(evt);
+            }
+        });
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem9);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Rotate");
+
+        jMenuItem10.setText("Horário");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
+
+        jMenuItem11.setText("Anti-Horário");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem11);
+
+        jMenuItem13.setText("Custom");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem13);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -297,6 +374,80 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem9MouseClicked
+           
+        System.out.println("Clicadooo ");
+        JDialog dialog = new JDialog(this, "Título do Modal", true);
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(this);  // Exibe o JDialog centralizado na janela principal
+        dialog.add(new JLabel("Você clicou no item de menu!", JLabel.CENTER));
+
+        // Torna o JDialog visível
+        dialog.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9MouseClicked
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        Dialogo dialogo = new Dialogo(this, true);
+        final int[] r_t = new int[1];
+        final int[] g_t = new int[1];
+        final int[] b_t = new int[1];
+        
+        dialogo.setRGBListener((r, g, b) -> {
+            System.out.println("R: " + r + ", G: " + g + ", B: " + b);
+            // Aqui você pode atualizar um componente, como mudar cor de fundo:
+            r_t[0] = r;
+            g_t[0] = g;
+            b_t[0] = b;
+        });
+        dialogo.setVisible(true);
+        
+      try { 
+          SegmentarPorCor.Segmentar(imagem1, r_t[0], g_t[0], b_t[0], jLabel1);
+      } catch (IOException e) {
+          JOptionPane.showMessageDialog(this, "Erro ao carregar imagem: " + e.getMessage());
+      }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+
+        try { 
+            BufferedImage result = Rotate.rotate(imagem1, TypeRotate.Right, 0, jLabel1);
+            imagem1 = result;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar imagem: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+
+        try { 
+            BufferedImage result = Rotate.rotate(imagem1, TypeRotate.Left, 0, jLabel1);
+            imagem1 = result;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar imagem: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        RotateDialogo dialogo = new RotateDialogo(this, true);
+        final double[] angle_diag = new double[1];
+        
+        dialogo.setRotateListener((angle) -> {
+            // Aqui você pode atualizar um componente, como mudar cor de fundo:
+            angle_diag[0] = angle;
+        });
+        dialogo.setVisible(true);
+        
+        try { 
+            angle_sum += angle_diag[0];
+            BufferedImage result = Rotate.rotate(imagem1, TypeRotate.Custom, angle_sum, jLabel1);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar imagem: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
     
   
     
@@ -335,11 +486,19 @@ public class NewJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -347,5 +506,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
