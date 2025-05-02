@@ -45,6 +45,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("Sobreposicao");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
 
@@ -221,10 +230,35 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-      
+        // TODO add your handling code here:
         TranparenciaSobreImagem.aplicarTransparenciaAnimada(imagem1, jLabel1);
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+         JFileChooser chooser = new JFileChooser();
+        int retorno = chooser.showOpenDialog(this); // 'this' é a janela atual
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File arquivo = chooser.getSelectedFile();
+
+            try {
+                BufferedImage imagem2 = ImageIO.read(arquivo);
+
+                // Verifica se a imagem tem o mesmo tamanho
+                if (imagem2.getWidth() == imagem1.getWidth() && imagem2.getHeight() == imagem1.getHeight()) {
+                    TransicaoEntreImagens.transicao(imagem1, imagem2, jLabel1);
+                } else {
+                    JOptionPane.showMessageDialog(this, "As imagens devem ter o mesmo tamanho.");
+                }
+
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao carregar imagem: " + e.getMessage());
+            }
+        }
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
     
   
     
@@ -273,5 +307,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }
