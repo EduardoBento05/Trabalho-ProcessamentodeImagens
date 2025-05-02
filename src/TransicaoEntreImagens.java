@@ -28,6 +28,7 @@ public class TransicaoEntreImagens {
 
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
+                    
                     Color c1 = new Color(img1.getRGB(i, j));
                     Color c2 = new Color(img2.getRGB(i, j));
 

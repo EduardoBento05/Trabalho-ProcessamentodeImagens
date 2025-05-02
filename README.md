@@ -23,7 +23,7 @@ Este projeto implementa operações básicas de manipulação de imagens utiliza
 
 ---
 
-### 2. Leitura e Exportação de Arquivos PNM (X)
+### 2. Leitura e Exportação de Arquivos PNM (OK)
 
 - **Objetivo:** Criar um programa capaz de ler um dos formatos de imagem PNM e exibi-la na tela.
 - **Exportação:** A imagem pode ser convertida para um dos seguintes formatos: GIF, BMP, JPG ou PNG.

@@ -46,6 +46,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +111,14 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("PGM(2)paraPNG");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
@@ -237,7 +246,8 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-         JFileChooser chooser = new JFileChooser();
+        
+        JFileChooser chooser = new JFileChooser();
         int retorno = chooser.showOpenDialog(this); // 'this' é a janela atual
 
         if (retorno == JFileChooser.APPROVE_OPTION) {
@@ -259,6 +269,34 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Abrir Arquivo PGM (P2)");
+        int op = chooser.showOpenDialog(this);
+
+        if (op == JFileChooser.APPROVE_OPTION) {
+
+            File arquivo = chooser.getSelectedFile();
+
+            try {
+                BufferedImage imagem = LeituraPGM2.lerPGM_P2(arquivo); 
+                jLabel1.setIcon(new ImageIcon(imagem));
+                setSize(imagem.getWidth() + 25, imagem.getHeight() + 70);
+                System.out.println("Imagem PGM carregada com sucesso!");
+
+                // Exportar a imagem carregada para PNG
+                File saida = new File("imagem_convertida.png"); // você pode usar um FileChooser também aqui
+                ImageIO.write(imagem, "png", saida);
+                System.out.println("Imagem exportada como PNG para: " + saida.getAbsolutePath());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erro ao abrir ou exportar o arquivo PGM.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
     
   
     
@@ -308,5 +346,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
