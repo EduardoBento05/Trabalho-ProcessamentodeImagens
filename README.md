@@ -4,13 +4,13 @@ Este projeto implementa operações básicas de manipulação de imagens utiliza
 
 ## 📌 Atividades Desenvolvidas
 
-### 1. Aplicação de Transparência (Alpha)
+### 1. Aplicação de Transparência (Alpha) (OK) ✅
 
-#✅###✅✅ a) Transparência sobre fundo preto ✅✅ ✅✅✅✅✅✅✅✅✅✅✅✅(OK)
+#### a) Transparência sobre fundo preto (OK) ✅
 - **Objetivo:** Carregar uma imagem RGB e aplicar transparência gradual à cor preta (RGB = 0, 0, 0), alterando o valor de alpha de 1 até 0.
 - **Resultado esperado:** A imagem inicialmente coberta por preto vai, aos poucos, revelando seu conteúdo original.
 
-#### b) Sobreposição de duas imagens RGB (OK)
+#### b) Sobreposição de duas imagens RGB (OK) ✅
 - **Objetivo:** Carregar duas imagens RGB do mesmo tamanho e sobrepô-las com uma transição gradual usando alpha.
 - **Fórmulas usadas para interpolação:**
  
